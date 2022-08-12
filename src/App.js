@@ -1,25 +1,35 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const title = "Welcome to my love for Patty!!";
+    const iLoveYou = "I love you";
+    var [notPatty, setNotPatty] = useState(true);
+    var [hearts, setHearts] = useState(0);
+    var itsPatty = () => {
+        if(notPatty) {
+            setNotPatty(false);
+        } else {
+            setNotPatty(true);
+        }
+    }
+    var addHearts = () => { setHearts(hearts + 1)}
+    function subtractHearts() { 
+        setHearts(hearts - 1)
+    }
+    return (
+        <div className="App">
+            <div className="content">
+                <h1>{ title }</h1>
+                <p>Hearts for Patty:</p> 
+                <p><button onClick={subtractHearts}> - </button> { hearts } <button onClick={addHearts}> + </button></p> 
+        
+                <h1> { iLoveYou } </h1>
+                <p> { notPatty? "Who?" : "Patty" } </p>
+                <button onClick={itsPatty}> Expose the name </button>
+            </div>
+        </div>
+    );
 }
 
 export default App;
